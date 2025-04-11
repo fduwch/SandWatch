@@ -257,8 +257,6 @@ logging.info(f"Baseline测试集: 正样本={test_pos}, 负样本={test_neg}, �
 
 
 # 先评估基线模型（RandomForest和XGBoost）
-print("\n=============== 开始评估基线模型（使用部分特征和有限数据子集） ===============")
-logging.info("\n=============== 开始评估基线模型（使用部分特征和有限数据子集） ===============")
 
 def save_model_metrics(metrics_dict, output_path):
     """保存所有模型的性能指标，包括上下浮动范围
@@ -335,22 +333,22 @@ xgb_graph_metrics_avg, xgb_graph_metrics_std, xgb_graph_model = run_multiple_exp
     num_runs=5
 )
 
-# 训练随机森林模型（节点分类，部分特征）
-print("\n----- 随机森林模型（节点分类，部分特征）多次实验 -----")
-logging.info("\n----- 随机森林模型（节点分类，部分特征）多次实验 -----")
+# 训练随机森林模型
+print("\n----- 随机森林模型多次实验 -----")
+logging.info("\n----- 随机森林模型多次实验 -----")
 rf_metrics_avg, rf_metrics_std, rf_model = run_multiple_experiments(
-    train_limited_random_forest, 
+    train_random_forest, 
     baseline_train_subset, 
     baseline_val_subset, 
     baseline_test_subset, 
     num_runs=5
 )
 
-# 训练XGBoost模型（节点分类，部分特征）
-print("\n----- XGBoost模型（节点分类，部分特征）多次实验 -----")
-logging.info("\n----- XGBoost模型（节点分类，部分特征）多次实验 -----")
+# 训练XGBoost模型
+print("\n----- XGBoost模型多次实验 -----")
+logging.info("\n----- XGBoost模型多次实验 -----")
 xgb_metrics_avg, xgb_metrics_std, xgb_model = run_multiple_experiments(
-    train_limited_xgboost, 
+    train_xgboost, 
     baseline_train_subset, 
     baseline_val_subset, 
     baseline_test_subset, 
